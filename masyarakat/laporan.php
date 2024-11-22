@@ -6,18 +6,18 @@ include '../db/connect.php';
 include '../function/pengaduan.php';
 
 // cek yang login bener-bener masyarakat/bukan
-if($_SESSION['role'] != 1) {
+if ($_SESSION['role'] != 1) {
     header('Location: ../auth/login.php');
     exit();
 }
 
 // proses input data
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     // validasi input
     $report = $_POST['message'] ?? '';
 
     // persiapan input image
-    if(isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $image = $_FILES['image']['name'];
         $tmp_name = $_FILES['image']['tmp_name'];
         $target_dir = "../uploads/";
@@ -28,13 +28,13 @@ if(isset($_POST['submit'])) {
     }
 
     // proses input ke database
-    if(!empty($report)) {
+    if (!empty($report)) {
         $status = buat_pengaduan($_SESSION['user_id'], $report, $image, $conn);
 
-        if($status) {
+        if ($status) {
             header("Location: dashboard-masyarakat.php");
         } else {
-            echo "Terjaid kesalahan, coba masukan data lagi";
+            echo "Terjadi kesalahan, coba masukan data lagi";
         }
     } else {
         echo "Masukan data terlebih dahulu!";
@@ -53,7 +53,7 @@ if(isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SICepu</title>
+    <title>TanggapCepat</title>
 
     <!-- Custom fonts for this template-->
     <link href="../bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -62,19 +62,22 @@ if(isset($_POST['submit'])) {
     <!-- Custom styles for this template-->
     <link href="../bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Custom Icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="background: linear-gradient(90deg, #8aa7dc, #bacbed);">
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class='bx bx-stopwatch'></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SICepu</div>
+                <div class="sidebar-brand-text mx-2">TanggapCepat</div>
             </a>
 
             <!-- Divider -->
@@ -98,28 +101,6 @@ if(isset($_POST['submit'])) {
                     <span>Buat Laporan</span>
                 </a>
             </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Semua Laporan</span>
-                </a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Laporan Selesai</span>
-                </a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Laporan Dalam Proses</span>
-                </a>
-            </li>
         </ul>
         <!-- End of Sidebar -->
 
@@ -136,8 +117,8 @@ if(isset($_POST['submit'])) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="../bootstrap/img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">masyarakat</span>
+                                <img class="img-profile rounded-circle" src="../assets/person.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -177,7 +158,7 @@ if(isset($_POST['submit'])) {
                                     <form method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label class="lable-control" for="username">Deskripsi laporan</label>
-                                            <textarea name="message" class="form-control" placeholder="Silahkan Masukan Laporan anda"></textarea>
+                                            <textarea name="message" class="form-control" placeholder="Silahkan Masukan Laporan Anda"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label class="lable-control" for="password">Bukti Foto</label>
@@ -199,7 +180,7 @@ if(isset($_POST['submit'])) {
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; TanggapCepat 2024</span>
                     </div>
                 </div>
             </footer>

@@ -20,7 +20,7 @@ if ($_SESSION['role'] != 2) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SICepu</title>
+    <title>TanggapCepat</title>
 
     <!-- Custom fonts for this template-->
     <link href="../bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,19 +29,22 @@ if ($_SESSION['role'] != 2) {
     <!-- Custom styles for this template-->
     <link href="../bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Custom Icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="background: linear-gradient(90deg, #8aa7dc, #bacbed);">
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class='bx bx-stopwatch'></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SICepu</div>
+                <div class="sidebar-brand-text mx-2">TanggapCepat</div>
             </a>
 
             <!-- Divider -->
@@ -49,7 +52,7 @@ if ($_SESSION['role'] != 2) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard-masyarakat.php">
+                <a class="nav-link" href="dashboard-petugas.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -59,7 +62,7 @@ if ($_SESSION['role'] != 2) {
             <hr class="sidebar-divider">
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="laporan-selesai.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Laporan Selesai</span>
                 </a>
@@ -88,7 +91,7 @@ if ($_SESSION['role'] != 2) {
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['username'] ?></span>
-                                <img class="img-profile rounded-circle" src="../bootstrap/img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="../assets/person.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -110,7 +113,7 @@ if ($_SESSION['role'] != 2) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Selamat datang <?= $_SESSION['username'] ?> 👋👋</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Selamat Datang <?= $_SESSION['username'] ?> 👋✨</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -123,10 +126,10 @@ if ($_SESSION['role'] != 2) {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Laporan Dalam Proses</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">9</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-solid fa-check fa-2x text-gray-300"></i>
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -147,49 +150,13 @@ if ($_SESSION['role'] != 2) {
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            <i class="fas fa-solid fa-check fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    
-                    <!-- Content Row -->
-                    <div class="row">
-                        <!-- Area Chart -->
-                        <div class="col-xl-12 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-warning">Laporan dalam proses</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <h3>Data laporan 1</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-                        <!-- Area Chart -->
-                        <div class="col-xl-12 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-success">Laporan Selesai</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <h3>ini juga pengaduan</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
                 <!-- /.container-fluid -->
             </div>
@@ -199,7 +166,7 @@ if ($_SESSION['role'] != 2) {
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; TanggapCepat 2024</span>
                     </div>
                 </div>
             </footer>
@@ -256,4 +223,3 @@ if ($_SESSION['role'] != 2) {
 </body>
 
 </html>
-

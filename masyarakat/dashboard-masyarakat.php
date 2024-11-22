@@ -22,6 +22,10 @@ $jumlah_pengaduan_selesai = count($pengaduan_selesai);
 
 $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
 
+// Ambil data laporan dengan feedback
+
+$reports_with_feedback = get_reports_with_feedback_by_user($_SESSION['username'], $conn);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +36,7 @@ $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SICepu</title>
+    <title>TanggapCepat</title>
 
     <!-- Custom fonts for this template-->
     <link href="../bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -41,19 +45,23 @@ $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
     <!-- Custom styles for this template-->
     <link href="../bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Custom Icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
 </head>
 
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="background: linear-gradient(90deg, #8aa7dc, #bacbed);">
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class='bx bx-stopwatch'></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SICepu</div>
+                <div class="sidebar-brand-text mx-2">TanggapCepat</div>
             </a>
 
             <!-- Divider -->
@@ -77,28 +85,6 @@ $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
                     <span>Buat Laporan</span>
                 </a>
             </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Semua Laporan</span>
-                </a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Laporan Selesai</span>
-                </a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Laporan Dalam Proses</span>
-                </a>
-            </li>
         </ul>
         <!-- End of Sidebar -->
 
@@ -116,7 +102,7 @@ $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['username'] ?></span>
-                                <img class="img-profile rounded-circle" src="../bootstrap/img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="../assets/person.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -138,7 +124,7 @@ $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Selamat datang <?= $_SESSION['username'] ?> 👋👋</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Selamat Datang <?= $_SESSION['username'] ?> 👋✨</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -153,23 +139,7 @@ $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $semua_laporan ?></div>
                                         </div>
                                         <div class="col-auto">
-                                        <i class="fa-solid fa-flag fas fa-2x text-gray-300"></i>                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Laporan Dalam Proses</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $jumlah_pengaduan_proses ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-solid fa-check fa-2x text-gray-300"></i>
+                                            <i class="fa-solid fa-flag fas fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -182,12 +152,8 @@ $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Laporan Selesai</div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $jumlah_pengaduan_selesai ?></div>
-                                                </div>
-                                            </div>
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Laporan Dalam Proses</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $jumlah_pengaduan_proses ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -196,9 +162,30 @@ $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Laporan Selesai</div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $jumlah_pengaduan_selesai ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-solid fa-check fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    
+
                     <!-- Content Row -->
                     <div class="row">
                         <!-- Area Chart -->
@@ -210,17 +197,17 @@ $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <?php foreach($pengaduan_proses as $p): ?>
+                                    <?php foreach ($pengaduan_proses as $p): ?>
                                         <div class="card p-4 mb-3">
                                             <strong>Tanggal Laporan : </strong>
-                                            <p><?= date('d-m-Y', strtotime($p['created_at']))?></p>
+                                            <p><?= date('d-m-Y', strtotime($p['created_at'])) ?></p>
                                             <strong>Status:</strong>
                                             <p><?= $p['status'] ?></p>
                                             <strong>Laporan:</strong>
                                             <p><?= $p['message'] ?></p>
                                         </div>
-                                        
-                                    <?php endforeach;?>
+
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
@@ -237,17 +224,19 @@ $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <?php foreach($pengaduan_selesai as $p): ?>
+                                    <?php foreach ($reports_with_feedback as $p): ?>
                                         <div class="card p-4 mb-3">
                                             <strong>Tanggal Laporan : </strong>
-                                            <p><?= date('d-m-Y', strtotime($p['created_at']))?></p>
-                                            <strong>Status:</strong>
-                                            <p><?= $p['status'] ?></p>
+                                            <p><?= date('d-m-Y', strtotime($p['report_date'])) ?></p>
                                             <strong>Laporan:</strong>
                                             <p><?= $p['message'] ?></p>
+                                            <strong>Tanggal Tanggapan:</strong>
+                                            <p><?= date('d-m-Y', strtotime($p['feedback_date'])) ?></p>
+                                            <strong>Tanggapan:</strong>
+                                            <p><?= $p['feedback'] ?? "Belum ada feedback" ?></p>
                                         </div>
-                                        
-                                    <?php endforeach;?>
+
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +251,7 @@ $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; TanggapCepat 2024</span>
                     </div>
                 </div>
             </footer>
@@ -319,4 +308,3 @@ $semua_laporan = $jumlah_pengaduan_proses + $jumlah_pengaduan_selesai;
 </body>
 
 </html>
-

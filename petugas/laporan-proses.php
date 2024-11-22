@@ -22,7 +22,7 @@ $pengaduan_proses = get_all_pengaduan_by_status('proses', $conn);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SICepu</title>
+    <title>TanggapCepat</title>
 
     <!-- Custom fonts for this template-->
     <link href="../bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,19 +31,22 @@ $pengaduan_proses = get_all_pengaduan_by_status('proses', $conn);
     <!-- Custom styles for this template-->
     <link href="../bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Custom Icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="background: linear-gradient(90deg, #8aa7dc, #bacbed);">
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class='bx bx-stopwatch'></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SICepu</div>
+                <div class="sidebar-brand-text mx-2">TanggapCepat</div>
             </a>
 
             <!-- Divider -->
@@ -51,7 +54,7 @@ $pengaduan_proses = get_all_pengaduan_by_status('proses', $conn);
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard-masyarakat.php">
+                <a class="nav-link" href="dashboard-petugas.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -61,7 +64,7 @@ $pengaduan_proses = get_all_pengaduan_by_status('proses', $conn);
             <hr class="sidebar-divider">
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="laporan-selesai.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Laporan Selesai</span>
                 </a>
@@ -90,7 +93,7 @@ $pengaduan_proses = get_all_pengaduan_by_status('proses', $conn);
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['username'] ?></span>
-                                <img class="img-profile rounded-circle" src="../bootstrap/img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="../assets/person.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -112,7 +115,7 @@ $pengaduan_proses = get_all_pengaduan_by_status('proses', $conn);
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Data Laporan Membutuhkan Tanggapan</h1>
-                    
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -123,31 +126,31 @@ $pengaduan_proses = get_all_pengaduan_by_status('proses', $conn);
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Tangal</th>
+                                            <th>Tanggal</th>
                                             <th>Pelapor</th>
                                             <th>Laporan</th>
                                             <th>Gambar</th>
                                             <th>Feedback</th>
                                         </tr>
                                     </thead>
-                                    <?php foreach($pengaduan_proses as $row): ?>
-                                    <tbody>
-                                        <tr>
-                                            <td><?= date('d-m-Y', strtotime($row['created_at'])) ?></td>
-                                            <td><?= $row['user_id'] ?></td>
-                                            <td><?= $row['message'] ?></td>
-                                            <td>
-                                                <?php if(!empty($row['image'])): ?>
-                                                    <img src="../uploads/<?= $row['image']?>" alt="gambar" width="300">
-                                                <?php else: ?>
-                                                    <span>tidak ada gambar</span>
-                                                <?php endif ?>
-                                            </td>
-                                            <td>
-                                                <a href="feedback.php?report_id=<?= $row['id'] ?>" class="btn btn-warning">Tanggapan</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                    <?php foreach ($pengaduan_proses as $row): ?>
+                                        <tbody>
+                                            <tr>
+                                                <td><?= date('d-m-Y', strtotime($row['created_at'])) ?></td>
+                                                <td><?= $row['user_id'] ?></td>
+                                                <td><?= $row['message'] ?></td>
+                                                <td>
+                                                    <?php if (!empty($row['image'])): ?>
+                                                        <img src="../uploads/<?= $row['image'] ?>" alt="gambar" width="300">
+                                                    <?php else: ?>
+                                                        <span>Tidak ada gambar</span>
+                                                    <?php endif ?>
+                                                </td>
+                                                <td>
+                                                    <a href="feedback.php?report_id=<?= $row['id'] ?>" class="btn btn-warning">Tanggapan</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     <?php endforeach ?>
 
                                 </table>
@@ -165,7 +168,7 @@ $pengaduan_proses = get_all_pengaduan_by_status('proses', $conn);
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; TanggapCepat 2024</span>
                     </div>
                 </div>
             </footer>
@@ -222,4 +225,3 @@ $pengaduan_proses = get_all_pengaduan_by_status('proses', $conn);
 </body>
 
 </html>
-

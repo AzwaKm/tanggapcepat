@@ -35,12 +35,13 @@ if(isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Sicepu</title>
+    <title>Login TanggapCepat</title>
     <link rel="shortcut icon" href="../assets/flag-line.png" type="image/x-icon">
     <link rel="stylesheet" href="../bootstrap/css/sb-admin-2.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-gradient-primary">
+<body style="background: linear-gradient(90deg, #8aa7dc, #bacbed);">
 
     <div class="container">
 
@@ -55,14 +56,14 @@ if(isset($_POST['login'])) {
                         <div class="row">
 
                             <div class="col-lg-6 d-none d-lg-block bg-login-image">
-                                <dotlottie-player src="https://lottie.host/f6e37747-11b8-4f0a-8d7c-b55172c9d62e/T9F9G1cscy.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></dotlottie-player>
+                              <dotlottie-player src="https://lottie.host/6447d9ba-ea9b-4783-bcb1-3374454613c1/MVNLM39rUd.json" background="transparent" speed="1" style="width: 500px; height: 500px" loop autoplay></dotlottie-player>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">Selamat Datang !</h1>
-                                        <h3 class="h6 text-gray-900">SiCepu Hadir untuk menampung semua keluhanmu</h3>
+                                        <h3 class="h6 text-gray-900"><strong>TanggapCepat</strong>: Solusi Cepat untuk Mendengar, Menangani, dan Menyelesaikan Aspirasi Masyarakat.</h3>
                                     </div>
 
                                     <form class="user" method="POST">
@@ -74,7 +75,7 @@ if(isset($_POST['login'])) {
                                             <label class="lable-control" for="password">Password</label>
                                             <input type="password" name="password" class="form-control form-control-user" placeholder="Enter Password">
                                         </div>
-                                        <button type="submit" name="login" class="btn btn-primary btn-user btn-block">Login</button>
+                                        <button type="submit" name="login" class="btn btn-user btn-block" style="background: linear-gradient(90deg, #8aa7dc, #bacbed);">Login</button>
                                     </form>
 
                                 </div>
